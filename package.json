@@ -1,0 +1,20 @@
+{
+  "name": "5h4d0wd06",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+	"test": "echo \"Error: no test specified\" && exit 1",
+	"build": "cp -r src/* dist/",
+    "cp-2src-react": "cp -r node_modules/es-react/dev src/js/vendor/es-react",
+    "cp-2dist-react": "cp -r node_modules/es-react dist/js/vendor/es-react",
+    "serve-src": "npm run cp-2src-react && browser-sync start --server 'src' --files 'src'",
+    "serve-dist": "npm run build && npm run cp-2dist-react && browser-sync start --server 'dist' --files 'dist'"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "browser-sync": "^2.26.7",
+    "es-react": "^16.12.0"
+  }
+}

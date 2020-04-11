@@ -1,0 +1,71 @@
+{
+  "_from": "es-react",
+  "_id": "es-react@16.12.0",
+  "_inBundle": false,
+  "_integrity": "sha512-PZIIb/GuJVbZQucX610xnMzbTyRtjkD5w3GhHZYk7AYGY9gzebB17S+eUtNg7KLj1VHcbqzEpJZj+nuor79Bqg==",
+  "_location": "/es-react",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "es-react",
+    "name": "es-react",
+    "escapedName": "es-react",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/es-react/-/es-react-16.12.0.tgz",
+  "_shasum": "62e579b650d3f1ae4812510b401d0821ef00afde",
+  "_spec": "es-react",
+  "_where": "/apps/k7n4n5t3w4rt.github.io/5h4d0wd06",
+  "author": {
+    "name": "@lukejacksonn"
+  },
+  "bugs": {
+    "url": "https://github.com/lukejacksonn/es-react/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "An ES6 module exposing the latest version of react and react-dom",
+  "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "npm-run-all": "^4.1.5",
+    "prop-types": "15.7.2",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
+    "react-is": "16.12.0",
+    "rimraf": "^3.0.0",
+    "rollup": "^1.21.4",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-replace": "^2.2.0"
+  },
+  "homepage": "https://github.com/lukejacksonn/es-react#readme",
+  "keywords": [
+    "react",
+    "es",
+    "module",
+    "import",
+    "export"
+  ],
+  "license": "MIT",
+  "module": "index.js",
+  "name": "es-react",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukejacksonn/es-react.git"
+  },
+  "scripts": {
+    "build": "rollup -c scripts/rollup.config.js",
+    "clean": "rimraf *.js dev",
+    "prepare-dev": "node ./scripts/write-dev-pkgjson.js",
+    "prepublishOnly": "run-s clean build prepare-dev"
+  },
+  "version": "16.12.0"
+}
