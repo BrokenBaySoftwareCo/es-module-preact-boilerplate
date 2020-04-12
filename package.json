@@ -4,22 +4,35 @@
   "description": "",
   "main": "index.js",
   "type": "module",
+  "snowpack": {
+    "webDependencies": [
+      "htm",
+      "preact",
+      "preact/hooks"
+    ],
+    "dedupe": []
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cp -r *.html *.txt *.png *.xml css img js site.webmanifest dist/",
-    "cp-htm": "cp -r node_modules/htm/dist/htm.module.js js/vendor/",
-    "cp-2dist-htm": "cp -r node_modules/htm/dist/htm.module.js dist/js/vendor/",
-    "cp-react": "cp -r node_modules/es-react/dev js/vendor/es-react",
-    "cp-2dist-react": "cp -r node_modules/es-react dist/js/vendor/es-react",
-    "serve-frontend": "npm run cp-htm && npm run cp-react && browser-sync start --server --files",
-    "serve-frontend-dist": "npm run build && npm run cp-2dist-htm && npm run cp-2dist-react && browser-sync start --server 'dist' --files 'dist'",
-    "serve-backend": "node server/index.js"
+    "snowpack": "snowpack install --clean",
+    "serve-frontend": "browser-sync start --server --files js",
+    "serve-frontend-dist": "npm run build && browser-sync start --server 'dist' --files 'dist'",
+    "start-dev": "npx nodemon --inspect server.js",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1",
+    "snowpack": "^1.6.0"
+  },
   "dependencies": {
     "browser-sync": "^2.26.7",
-    "es-react": "^16.12.0",
-    "htm": "^3.0.3"
+    "htm": "^3.0.3",
+    "node-static": "^0.7.11",
+    "preact": "^10.4.0",
+    "preact-render-to-string": "^5.1.6"
   }
 }

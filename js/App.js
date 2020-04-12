@@ -1,10 +1,11 @@
-import { React, ReactDOM } from './vendor/es-react/index.js';
-import htm from './vendor/htm.module.js'
-const html = htm.bind(React.createElement)
+import { h, render } from '/web_modules/preact.js'
+import { useState } from '/web_modules/preact/hooks.js'
+import htm from '/web_modules/htm.js'
+const html = htm.bind(h)
 
 
 const Counter = props => {
-  const [count, setCount] = React.useState(parseInt(props.count))
+  const [count, setCount] = useState(parseInt(props.count))
   return html`
     <div>
       <h1>${count}</h1>
@@ -14,7 +15,7 @@ const Counter = props => {
   `
 }
 
-ReactDOM.render(
+render(
   html`
     <h1>Look Ma! No script tags, no build step</h1>
     <${Counter} count=0 />
