@@ -6,12 +6,12 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cp -r src/* dist/",
-    "cp-2src-htm": "cp -r node_modules/htm/dist/htm.module.js src/js/vendor/",
+    "build": "cp -r *.html *.txt *.png *.xml css img js site.webmanifest dist/",
+    "cp-htm": "cp -r node_modules/htm/dist/htm.module.js js/vendor/",
     "cp-2dist-htm": "cp -r node_modules/htm/dist/htm.module.js dist/js/vendor/",
-    "cp-2src-react": "cp -r node_modules/es-react/dev src/js/vendor/es-react",
+    "cp-react": "cp -r node_modules/es-react/dev js/vendor/es-react",
     "cp-2dist-react": "cp -r node_modules/es-react dist/js/vendor/es-react",
-    "serve-frontend-src": "npm run cp-2src-htm && npm run cp-2src-react && browser-sync start --server 'src' --files 'src'",
+    "serve-frontend": "npm run cp-htm && npm run cp-react && browser-sync start --server --files",
     "serve-frontend-dist": "npm run build && npm run cp-2dist-htm && npm run cp-2dist-react && browser-sync start --server 'dist' --files 'dist'",
     "serve-backend": "node server/index.js"
   },
