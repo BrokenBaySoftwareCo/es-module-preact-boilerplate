@@ -2,9 +2,9 @@
 
 This is a combination of React with ES6 modules and [HTML5Boilerplate](https://html5boilerplate.com/).
 
-## ES6 React Modules
+## React w/ ES Modules
 
-This setup uses these ES6 React package:
+This setup uses these ES React package:
 
     <https://www.npmjs.com/package/es-react>
 
@@ -40,5 +40,6 @@ import htm from './vendor/htm.module.js'
 
 ## To Do
 
-[1] Use [this Babel plugin](https://github.com/developit/htm/tree/master/packages/babel-plugin-htm) to compile the `htm` module out of existence.
+[1] Server-side rendering
+[2] Use [this Babel plugin](https://github.com/developit/htm/tree/master/packages/babel-plugin-htm) to compile the `htm` module out of existence.
 
