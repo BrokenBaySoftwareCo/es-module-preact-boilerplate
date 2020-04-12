@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
 	"build": "cp -r src/* dist/",
 	"cp-2src-htm": "cp -r node_modules/htm/dist/htm.module.js src/js/vendor/",
-	"cp-2dist-htm": "cp -r node_modules/htm/dist/htm.module.js src/js/vendor/",
+	"cp-2dist-htm": "cp -r node_modules/htm/dist/htm.module.js dist/js/vendor/",
     "cp-2src-react": "cp -r node_modules/es-react/dev src/js/vendor/es-react",
     "cp-2dist-react": "cp -r node_modules/es-react dist/js/vendor/es-react",
     "serve-src": "npm run cp-2src-htm && npm run cp-2src-react && browser-sync start --server 'src' --files 'src'",

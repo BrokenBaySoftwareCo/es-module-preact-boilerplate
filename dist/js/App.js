@@ -1,6 +1,4 @@
-// import { React, ReactDOM } from 'https://unpkg.com/es-react@16.12.0';
 import { React, ReactDOM } from './vendor/es-react/index.js';
-//import htm from 'https://unpkg.com/htm?module'
 import htm from './vendor/htm.module.js'
 const html = htm.bind(React.createElement)
 
