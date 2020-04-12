@@ -17,7 +17,26 @@ NOTE: I'm installing the package locally, rather than reference it at the CDN. I
     "cp-2dist-react": "cp -r node_modules/es-react dist/js/vendor/es-react",
 ```
 
+Importing them in `App.js`:
+
+```
+import { React, ReactDOM } from './vendor/es-react/index.js';
+```
+
 ## `htm` - "JSX-like syntax in plain JavaScript - no transpiler necessary"
+
+I'm installing this locally too. For the moment, the `src` and `dist` are the same but later I may use Babel to transpile it away for the dist build.
+
+```
+	"cp-2src-htm": "cp -r node_modules/htm/dist/htm.module.js src/js/vendor/",
+	"cp-2dist-htm": "cp -r node_modules/htm/dist/htm.module.js dist/js/vendor/",
+```
+
+Importing them in `App.js`:
+
+```
+import htm from './vendor/htm.module.js'
+```
 
 ## To Do
 
