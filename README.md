@@ -1,45 +1,63 @@
-# ES6 React Boilerplate
+# es-module-preact-boilerplate
 
-This is a combination of React with ES6 modules and [HTML5Boilerplate](https://html5boilerplate.com/).
+This is a combination of Preact with ES6 modules and [HTML5Boilerplate](https://html5boilerplate.com/).
 
-## React w/ ES Modules
+## Preact w/ ES Modules
 
-This setup uses these ES React package:
+The React peoples are still [messing around deciding what to do about es6 modules](https://github.com/facebook/react/issues/11503), which is pretty weird in 2020.
 
-    <https://www.npmjs.com/package/es-react>
-
-It's not official. Officially, the React peoples are still [fucking around deciding what to do about es6 modules](https://github.com/facebook/react/issues/11503), which is pretty weird in 2020:
-
-NOTE: I'm installing the package locally, rather than reference it at the CDN. In `package.json`, there's some scripts that copy the package from the `node_modules` directory:
+I'm using Preact because it already has ES modules and [Snowpack](https://www.snowpack.dev/) to copy them up to the `/web_modules` directory for accessibility from the front end.
 
 ```
-    "cp-2src-react": "cp -r node_modules/es-react/dev src/js/vendor/es-react",
-    "cp-2dist-react": "cp -r node_modules/es-react dist/js/vendor/es-react",
+  "scripts": {
+
+	...
+
+    "snowpack": "snowpack install --clean",
+
+	...
+
+  },
+
+  ...
+
+  "snowpack": {
+    "webDependencies": [
+      "htm",
+      "preact",
+      "preact/hooks"
+	  "preact-render-to-string"
+    ],
+    "dedupe": []
+  },
 ```
 
-Importing them in `App.js`:
+Importing them in the client component scripts from `/web_modules`:
 
 ```
-import { React, ReactDOM } from './vendor/es-react/index.js';
+import { h, render } from '../web_modules/preact.js'
+import { useState } from '../web_modules/preact/hooks.js'
 ```
 
 ## `htm` - "JSX-like syntax in plain JavaScript - no transpiler necessary"
 
-I'm installing this locally too. For the moment, the `src` and `dist` are the same but later I may use Babel to transpile it away for the dist build.
-
 ```
-	"cp-2src-htm": "cp -r node_modules/htm/dist/htm.module.js src/js/vendor/",
-	"cp-2dist-htm": "cp -r node_modules/htm/dist/htm.module.js dist/js/vendor/",
+import htm from '../web_modules/htm.js'
 ```
 
-Importing them in `App.js`:
+## Build
+
+At the moment the build script is just a placeholder that puts all the front end code into the `/dist` directory.
+For the moment, the files in `dist` are just copies but later I may use Babel to transpile away things like `htm` away for the dist build.
 
 ```
-import htm from './vendor/htm.module.js'
+    "build": "cp -r *.html *.txt *.png *.xml css img js site.webmanifest dist/",
 ```
+
+Actually it probably doesn't work yet because there's no `web_manifest` dir...
 
 ## To Do
 
-[1] Server-side rendering
+[1] Get the build script to tell Snowpack put production versions of packages into the `dist/web_manifest`
 [2] Use [this Babel plugin](https://github.com/developit/htm/tree/master/packages/babel-plugin-htm) to compile the `htm` module out of existence.
 
