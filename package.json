@@ -28,6 +28,7 @@
 		"snowpack": "^1.6.0"
 	},
 	"dependencies": {
+		"emotion": "^10.0.27",
 		"finalhandler": "^1.1.2",
 		"htm": "^3.0.3",
 		"preact": "^10.4.0",
