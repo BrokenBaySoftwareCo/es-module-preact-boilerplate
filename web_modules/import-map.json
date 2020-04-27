@@ -3,6 +3,7 @@
     "htm": "./htm.js",
     "preact": "./preact.js",
     "preact-render-to-string": "./preact-render-to-string.js",
-    "preact/hooks": "./preact/hooks.js"
+    "preact/hooks": "./preact/hooks.js",
+    "simplestyle-js": "./simplestyle-js.js"
   }
 }

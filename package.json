@@ -1,38 +1,60 @@
 {
-	"name": "5h4d0wd06",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"type": "module",
-	"snowpack": {
-		"webDependencies": [
-			"htm",
-			"preact",
-			"preact/hooks",
-			"preact-render-to-string"
-		],
-		"dedupe": []
-	},
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "cp -r *.html *.txt *.png *.xml css img js site.webmanifest dist/",
-		"snowpack": "snowpack install --clean",
-		"start-dev": "npx nodemon --inspect server/index.js",
-		"start": "node server/index.js"
-	},
-	"author": "",
-	"license": "ISC",
-	"devDependencies": {
-		"nodemon": "^2.0.2",
-		"prettier": "1.19.1",
-		"snowpack": "^1.6.0"
-	},
-	"dependencies": {
-		"emotion": "^10.0.27",
-		"finalhandler": "^1.1.2",
-		"htm": "^3.0.3",
-		"preact": "^10.4.0",
-		"preact-render-to-string": "^5.1.6",
-		"serve-static": "^1.14.1"
-	}
+  "name": "es-module-preact-boilerplate",
+  "description": "For making new Preact projects with server-side rendering, es modules and NO compilation during development",
+  "version": "1.0.0",
+  "author": "Kynan Stewart",
+  "bugs": {
+    "url": "https://github.com/k7n4n5t3w4rt/es-module-preact-boilerplate/issues"
+  },
+  "dependencies": {
+    "finalhandler": "^1.1.2",
+    "htm": "^3.0.3",
+    "preact": "^10.4.0",
+    "preact-render-to-string": "^5.1.6",
+    "serve-static": "^1.14.1",
+    "simplestyle-js": "^2.1.4"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "faucet": "0.0.1",
+    "fixpack": "^3.0.6",
+    "flow-bin": "^0.123.0",
+    "nodemon": "^2.0.2",
+    "prettier": "1.19.1",
+    "snowpack": "^1.6.0",
+    "tape": "^5.0.0"
+  },
+  "homepage": "https://github.com/k7n4n5t3w4rt/es-module-preact-boilerplate#readme",
+  "keywords": [
+    "boilerplate",
+    "es",
+    "modules"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/k7n4n5t3w4rt/es-module-preact-boilerplate.git"
+  },
+  "scripts": {
+    "build": "cp -r *.html *.txt *.png *.xml css img js site.webmanifest dist/",
+    "fixpack": "fixpack",
+    "flow": "flow check",
+    "snowpack": "snowpack install --clean",
+    "browsersync": "browser-sync start --server --files \"./\"",
+    "start": "node server/index.js",
+    "tape": "tape ./server/*.tape.cjs | faucet",
+    "test": "npm run tape"
+  },
+  "snowpack": {
+    "webDependencies": [
+      "simplestyle-js",
+      "htm",
+      "preact",
+      "preact/hooks",
+      "preact-render-to-string"
+    ],
+    "dedupe": []
+  },
+  "type": "module"
 }
