@@ -16,13 +16,12 @@
   },
   "devDependencies": {
     "browser-sync": "^2.26.7",
-    "faucet": "0.0.1",
     "fixpack": "^3.0.6",
     "flow-bin": "^0.123.0",
+    "jasmine": "^3.5.0",
     "nodemon": "^2.0.2",
     "prettier": "1.19.1",
-    "snowpack": "^1.6.0",
-    "tape": "^5.0.0"
+    "snowpack": "^1.6.0"
   },
   "homepage": "https://github.com/k7n4n5t3w4rt/es-module-preact-boilerplate#readme",
   "keywords": [
@@ -43,8 +42,7 @@
     "snowpack": "snowpack install --clean",
     "browsersync": "browser-sync start --server --files \"./\"",
     "start": "node server/index.js",
-    "tape": "tape ./server/*.tape.cjs | faucet",
-    "test": "npm run tape"
+    "test": "jasmine"
   },
   "snowpack": {
     "webDependencies": [
