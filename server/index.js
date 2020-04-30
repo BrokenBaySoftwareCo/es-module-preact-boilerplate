@@ -1,3 +1,4 @@
+// @flow
 import http from "http";
 import fs from "fs";
 import finalHandler from "finalhandler";
@@ -7,7 +8,6 @@ import render from "../web_modules/preact-render-to-string.js";
 import App from "../js/App.js";
 
 const port = 4000;
-// console.log(process.cwd());
 const index = fs.readFileSync("./index.html", "utf8");
 
 var serveAsStatic = serveStatic(".", {
