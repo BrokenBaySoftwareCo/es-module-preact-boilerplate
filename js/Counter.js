@@ -1,21 +1,24 @@
 // @flow
 import { h, render } from "../web_modules/preact.js";
-import typeof { h as H, render as Render } from "../web_modules/preact.js";
+import typeof {
+  h as HType,
+  render as RenderType,
+} from "../web_modules/preact.js";
 import { useState } from "../web_modules/preact/hooks.js";
+import typeof { UseStateType } from "../web_modules/preact/hooks.js";
 import htm from "../web_modules/htm.js";
-import typeof Htm from "../web_modules/htm.js";
-// import typeof { useState as UseState } from "../web_modules/preact/hooks.js";
+import typeof HtmType from "../web_modules/htm.js";
 // import { createStyles } from "../web_modules/simplestyle-js.js";
-// import typeof { createStyles as CreateStyles } from "../web_modules/simplestyle-js.js";
+// import typeof { createStyles as CreateStylesType } from "../web_modules/simplestyle-js.js";
 
-const html = htm.bind(h);
+const html /*: HtmType */ = htm.bind(h);
 
 /*::
 type Props = {
   count: typeof Number
 };
 */
-const Counter = (props /*: Props */) /*: Htm */ => {
+const Counter = (props /*: Props */) /*: HtmType */ => {
   const [count, setCount] = useState(parseInt(props.count));
   console.log(props.count.isInteger());
   return html`

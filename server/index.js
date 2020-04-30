@@ -1,11 +1,18 @@
 // @flow
 import http from "http";
+import typeof HttpType from "http";
 import fs from "fs";
+import typeof FsType from "fs";
 import finalHandler from "finalhandler";
+import typeof FinalHandlerType from "finalhandler";
 import serveStatic from "serve-static";
+import typeof ServeStaticType from "serve-static";
 import { h } from "../web_modules/preact.js";
+import typeof { h as HType } from "../web_modules/preact.js";
 import render from "../web_modules/preact-render-to-string.js";
+import typeof RenderType from "../web_modules/preact-render-to-string.js";
 import App from "../js/App.js";
+import typeof AppType from "../js/App.js";
 
 const port = 4000;
 const index = fs.readFileSync("./index.html", "utf8");
