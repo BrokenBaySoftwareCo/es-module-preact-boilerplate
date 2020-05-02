@@ -1,0 +1,46 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+	<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+	<script>
+		window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+		ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+	</script>
+	<script src="https://www.google-analytics.com/analytics.js" async></script>
+	<!--
+		 * Hash URLs
+		 * =========
+		 * If this is a purely client-side hosting environment, like
+		 * S3 or GitHub pages, we'll need to use http://hash.urls#/like/this
+		 * In that case, we need to catch requests for subdirectory paths
+		 * and redirect them to http://our.domain:port_number/#pathname.
+		 * This index.html file does that with the script below. It also
+		 * may as well register a page load with Google Analytics for
+		 * the original URL
+	-->
+	<script type="text/javascript">
+		(function(l) {
+			if (l.pathname) {
+				let pathName = l.pathname;
+				// `preact-router` in `/js/App.js` doesn't like trailing "/"
+				if (pathName.slice(-1) === '/') {
+					pathName = pathName.substring(0,pathName.length-1);
+				}
+				// Redirect to / with a #path/name/
+				let locationString =
+					window.location.protocol +
+					"//" + window.location.hostname;
+				if( window.location.port) {
+					locationString += ":" + window.location.port
+				}
+				locationString += "/#" + pathName
+				window.location.replace(locationString);
+			}
+		}(window.location))
+	</script>
+	<!-- End Single Page Apps for GitHub Pages -->
+</head>
+
+<body>
+</body>
+</html>

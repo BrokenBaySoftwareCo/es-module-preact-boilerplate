@@ -29,3 +29,15 @@ declare module "../web_modules/simplestyle-js.js" {
 declare module "../web_modules/htm.js" {
   declare module.exports: any;
 }
+
+declare module "../web_modules/yabr.js" {
+  declare module.exports: any;
+}
+
+declare module "../web_modules/preact-router.js" {
+  declare module.exports: any;
+}
+
+declare module "../web_modules/history.js" {
+  declare module.exports: any;
+}
