@@ -12,10 +12,10 @@ export const test = (
 ) /*: void */ => {
   try {
     testFunction();
+    console.log("PASS:", message, ":)");
   } catch (e) {
-    console.group(message);
-    console.error("FAIL:", e.message);
-    console.groupEnd();
+    console.log("FAIL:", message, ":(");
+    console.error(e.message);
   }
 };
 
@@ -23,9 +23,12 @@ export const testPromise = (
   message /*: string */,
   testFunction /*: promiseFunction */,
 ) /*: void */ => {
-  testFunction().catch(e => {
-    console.group(message);
-    console.error("FAIL:", e.message);
-    console.groupEnd();
-  });
+  testFunction()
+    .then(() => {
+      console.log("PASS:", message, ":)");
+    })
+    .catch(e => {
+      console.log("FAIL:", message, ":(");
+      console.error(e.message);
+    });
 };

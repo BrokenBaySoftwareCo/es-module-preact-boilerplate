@@ -45,7 +45,7 @@
     "flow": "flow check",
     "snowpack": "snowpack install --clean",
     "start": "node server/index.js",
-    "test": "find . -name *.test.js | grep -v node_modules | xargs node"
+    "test": "find . -name *.testy.js | xargs -n1 node"
   },
   "snowpack": {
     "webDependencies": [
