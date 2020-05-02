@@ -23,35 +23,37 @@ import typeof {
 
 const html /*: HtmType */ = htm.bind(h);
 
-/**
- *
- * Normal URLs
- * ===========
- * If we have some server-side smarts, like the node server in /server/index.js
- * or browsersync started with the --single flag,
- * we can use http://normal.urls/like/this
- */
-let history = undefined;
-/**
- * Hash History URLs - pure client-side
- * =================
- * If this is a purely client-side hosting environment, like
- * S3 or GitHub pages, we'll need to use http://hash.urls#/like/this
- */
-if (typeof window !== "undefined") {
-  history = createHashHistory();
-}
-
 /*::
 type Props = {
-  url: string
+  url?: string
 };
 */
 const App /*: function */ = (props /*: Props */) /*: HtmType */ => {
+  /**
+   *
+   * Normal URLs
+   * ===========
+   * If we have some server-side smarts, like the node server in /server/index.js
+   * or browsersync started with the --single flag,
+   * we can use http://normal.urls/like/this
+   */
+  let history = undefined;
+  /**
+   * Hash History URLs - pure client-side
+   * =================
+   * If this is a purely client-side hosting environment, like
+   * S3 or GitHub pages, we'll need to use http://hash.urls#/like/this
+   */
+  if (typeof window !== "undefined" && window.USE_HASH_HISTORY === true) {
+    console.log("USE_HASH_HISTORY");
+    history = createHashHistory();
+  }
+
   return html`
     [App]
     <${Router} url="${props.url}" history=${history}>
-      <${Counter} count="0" path="/counter" />
+      <${Counter} count="0" path="/" />
+      <${Counter} count="1" path="/counter" />
     </${Router}>
   `;
 };

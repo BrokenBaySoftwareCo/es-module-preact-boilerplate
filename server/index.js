@@ -40,9 +40,13 @@ const requestHandler = (req, res) => {
     serveAsStatic(req, res, finalHandler(req, res));
   } else {
     console.log("Serving dynamic content: ", req.url);
-    var result = index.replace(
+    let result = index.replace(
       /<\!-- TRUTH...BEAUTY...LOVE -->/g,
       render(App({ url: req.url }), {}, { pretty: true }),
+    );
+    result = result.replace(
+      /USE_HASH_HISTORY \= true/g,
+      "USE_HASH_HISTORY = false",
     );
     res.end(result);
   }

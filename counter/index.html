@@ -34,6 +34,7 @@
 					locationString += ":" + window.location.port
 				}
 				locationString += "/#" + pathName
+				console.log(l.pathname, "Redirecting: ", locationString)
 				window.location.replace(locationString);
 			}
 		}(window.location))
