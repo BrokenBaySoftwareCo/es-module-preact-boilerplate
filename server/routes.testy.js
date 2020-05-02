@@ -70,3 +70,71 @@ testPromise("Testing server route /counter/", () => {
       throw e;
     });
 });
+
+options.port = 3000;
+
+testPromise("Testing client-side route /", () => {
+  options.path = "/";
+  return requestPromise(options)
+    .then(({ res, body }) => {
+      should(res.statusCode).be.exactly(200);
+    })
+    .catch(e => {
+      throw e;
+    });
+});
+
+testPromise("Testing client-side route /counter", () => {
+  options.path = "/counter";
+  return requestPromise(options)
+    .then(({ res, body }) => {
+      should(res.statusCode).be.exactly(301);
+    })
+    .catch(e => {
+      throw e;
+    });
+});
+
+testPromise("Testing client-side route /counter/", () => {
+  options.path = "/counter/";
+  return requestPromise(options)
+    .then(({ res, body }) => {
+      should(res.statusCode).be.exactly(200);
+    })
+    .catch(e => {
+      throw e;
+    });
+});
+
+testPromise("Testing client-side route /#/", () => {
+  options.path = "/#/";
+  return requestPromise(options)
+    .then(({ res, body }) => {
+      should(res.statusCode).be.exactly(200);
+    })
+    .catch(e => {
+      throw e;
+    });
+});
+
+testPromise("Testing client-side route /#/counter", () => {
+  options.path = "/#/counter";
+  return requestPromise(options)
+    .then(({ res, body }) => {
+      should(res.statusCode).be.exactly(200);
+    })
+    .catch(e => {
+      throw e;
+    });
+});
+
+testPromise("Testing client-side route /#/counter/", () => {
+  options.path = "/#/counter/";
+  return requestPromise(options)
+    .then(({ res, body }) => {
+      should(res.statusCode).be.exactly(200);
+    })
+    .catch(e => {
+      throw e;
+    });
+});
