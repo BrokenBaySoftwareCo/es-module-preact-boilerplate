@@ -19,30 +19,36 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var numToAlpha_1$1 = __importDefault(numToAlpha_1);
 var inc = Date.now();
 var numPairsRegex = /(\d{1,2})/g;
-function getUniqueSuffix() {
+function getUniqueSuffix(uid) {
+    if (uid === void 0) { uid = null; }
     var numPairs = [];
     var incStr = inc.toString();
-    var result = numPairsRegex.exec(incStr);
-    while (result) {
-        numPairs.push(result[0]);
-        result = numPairsRegex.exec(incStr);
-    }
     var out = '_';
-    numPairs.forEach(function (pair) {
-        var val = +pair;
-        if (val > 25) {
-            var _a = pair.split(''), first = _a[0], second = _a[1];
-            out += "" + numToAlpha_1$1.default(+first) + numToAlpha_1$1.default(+second);
+    if (uid !== null) {
+        out += uid;
+    }
+    else {
+        var result = numPairsRegex.exec(incStr);
+        while (result) {
+            numPairs.push(result[0]);
+            result = numPairsRegex.exec(incStr);
         }
-        else
-            out += numToAlpha_1$1.default(val);
-    });
-    inc += 1;
+        numPairs.forEach(function (pair) {
+            var val = +pair;
+            if (val > 25) {
+                var _a = pair.split(''), first = _a[0], second = _a[1];
+                out += "" + numToAlpha_1$1.default(+first) + numToAlpha_1$1.default(+second);
+            }
+            else
+                out += numToAlpha_1$1.default(val);
+        });
+        inc += 1;
+    }
     return out;
 }
 exports.getUniqueSuffix = getUniqueSuffix;
 function generateClassName(c) {
-    return "" + c + getUniqueSuffix();
+    return "" + c[0] + getUniqueSuffix(c[1]);
 }
 exports.default = generateClassName;
 });
@@ -90,8 +96,9 @@ function formatCSSRules(cssRules) {
         return "" + prev + formatCSSRuleName(cssProp) + ":" + cssVal + ";";
     }, '');
 }
-function execCreateStyles(rules, options, parentSelector, noGenerateClassName) {
+function execCreateStyles(rules, options, parentSelector, noGenerateClassName, uid) {
     if (noGenerateClassName === void 0) { noGenerateClassName = false; }
+    if (uid === void 0) { uid = null; }
     var out = {};
     var sheetBuffer = '';
     var mediaQueriesbuffer = '';
@@ -110,7 +117,7 @@ function execCreateStyles(rules, options, parentSelector, noGenerateClassName) {
                 throw new Error('Unable to map @media query because rules / props are an invalid type');
             guardCloseRuleWrite();
             mediaQueriesbuffer += classNameOrCSSRule + "{";
-            var _c = execCreateStyles(classNameRules, options, parentSelector), regularOutput = _c[1], mediaQueriesOutput = _c[2];
+            var _c = execCreateStyles(classNameRules, options, parentSelector, null, uid), regularOutput = _c[1], mediaQueriesOutput = _c[2];
             mediaQueriesbuffer += regularOutput;
             mediaQueriesbuffer += '}';
             mediaQueriesbuffer += mediaQueriesOutput;
@@ -122,17 +129,20 @@ function execCreateStyles(rules, options, parentSelector, noGenerateClassName) {
             // format of { '& > span': { display: 'none' } } (or further nesting)
             var replaced = classNameOrCSSRule.replace(/&/g, parentSelector);
             replaced.split(/,\s*/).forEach(function (selector) {
-                var _a = execCreateStyles(classNameRules, options, selector), regularOutput = _a[1], mediaQueriesOutput = _a[2];
+                var _a = execCreateStyles(classNameRules, options, selector, null, uid), regularOutput = _a[1], mediaQueriesOutput = _a[2];
                 sheetBuffer += regularOutput;
                 mediaQueriesbuffer += mediaQueriesOutput;
             });
         }
         else if (!parentSelector && typeof classNameRules === 'object') {
             guardCloseRuleWrite();
-            var generated = noGenerateClassName ? classNameOrCSSRule : generateClassName_1$1.default(classNameOrCSSRule);
+            var generated = generateClassName_1$1.default([classNameOrCSSRule, uid]);
+            if (noGenerateClassName) {
+                generated = classNameOrCSSRule;
+            }
             out[classNameOrCSSRule] = generated;
             var generatedSelector = "" + (noGenerateClassName ? '' : '.') + generated;
-            var _d = execCreateStyles(classNameRules, options, generatedSelector), regularOutput = _d[1], mediaQueriesOutput = _d[2];
+            var _d = execCreateStyles(classNameRules, options, generatedSelector, null, uid), regularOutput = _d[1], mediaQueriesOutput = _d[2];
             sheetBuffer += regularOutput;
             mediaQueriesbuffer += mediaQueriesOutput;
         }
@@ -195,9 +205,11 @@ function accumulateSheetContents(sheetContents, options) {
         accumulatedSheetContents = null;
     }, 0);
 }
-function rawStyles(rules, options) {
+function rawStyles(rules, options, uid) {
+    if (options === void 0) { options = null; }
+    if (uid === void 0) { uid = null; }
     var coerced = coerceCreateStylesOptions(options);
-    var _a = execCreateStyles(rules, coerced, null, true), sheetContents = _a[1], mediaQueriesContents = _a[2];
+    var _a = execCreateStyles(rules, coerced, null, true, uid), sheetContents = _a[1], mediaQueriesContents = _a[2];
     var mergedContents = "" + sheetContents + mediaQueriesContents;
     if (coerced.accumulate)
         accumulateSheetContents(mergedContents);
@@ -206,10 +218,12 @@ function rawStyles(rules, options) {
     return mergedContents;
 }
 exports.rawStyles = rawStyles;
-function keyframes(frames, options) {
+function keyframes(frames, options, uid) {
+    if (options === void 0) { options = null; }
+    if (uid === void 0) { uid = null; }
     var coerced = coerceCreateStylesOptions(options);
-    var keyframeName = generateClassName_1$1.default('keyframes_');
-    var _a = execCreateStyles(frames, coerced, null, true), keyframesContents = _a[1];
+    var keyframeName = generateClassName_1$1.default(['keyframes_']);
+    var _a = execCreateStyles(frames, coerced, null, true, uid), keyframesContents = _a[1];
     // const keyframesContents = generateSheetContents(out, toRender);
     var sheetContents = "@keyframes " + keyframeName + "{" + keyframesContents + "}";
     if (coerced.accumulate)
@@ -219,19 +233,18 @@ function keyframes(frames, options) {
     return [keyframeName, sheetContents];
 }
 exports.keyframes = keyframes;
-function createStyles(rules, options) {
+function createStyles(rules, options, uid) {
+    if (options === void 0) { options = null; }
+    if (uid === void 0) { uid = null; }
     var coerced = coerceCreateStylesOptions(options);
-    var _a = execCreateStyles(rules, coerced, null), out = _a[0], sheetContents = _a[1], mediaQueriesContents = _a[2];
+    var _a = execCreateStyles(rules, coerced, null, null, uid), out = _a[0], sheetContents = _a[1], mediaQueriesContents = _a[2];
     var mergedContents = "" + sheetContents + mediaQueriesContents;
     var replacedSheetContents = replaceBackReferences(out, mergedContents);
     if (coerced.accumulate)
         accumulateSheetContents(replacedSheetContents);
     else if (coerced.flush)
         flushSheetContents(replacedSheetContents);
-    return [
-        out,
-        replacedSheetContents,
-    ];
+    return [out, replacedSheetContents];
 }
 exports.default = createStyles;
 });

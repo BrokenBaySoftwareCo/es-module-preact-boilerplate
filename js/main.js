@@ -17,7 +17,7 @@ const html /*: HtmType */ = htm.bind(h);
 
 // NOTE: `hydrate()` doesn't work with `simplestyle-js` - the
 // class names don't match when the page is hydrated
-render(
+hydrate(
   html`
     <${App} />
   `,

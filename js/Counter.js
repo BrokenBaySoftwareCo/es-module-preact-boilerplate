@@ -17,12 +17,16 @@ import typeof {
 
 const html /*: HtmType */ = htm.bind(h);
 
-const [styles] /*: CreateStylesType */ = createStyles({
-  someCssClass: {
-    fontSize: "2em",
-    color: "gold",
+const [styles] /*: CreateStylesType */ = createStyles(
+  {
+    someCssClass: {
+      fontSize: "2em",
+      color: "gold",
+    },
   },
-});
+  null,
+  "myuniqueid",
+);
 
 /*::
 type Props = {
