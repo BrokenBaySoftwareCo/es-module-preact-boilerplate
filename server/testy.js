@@ -1,5 +1,6 @@
 // @flow
 import shouldFunction from "../web_modules/should/as-function.js";
+import fs from "fs";
 
 export { shouldFunction as should };
 
@@ -12,9 +13,9 @@ export const test = (
 ) /*: void */ => {
   try {
     testFunction();
-    console.log("PASS:", message, ":)");
+    console.log("ok - " + message, ":)");
   } catch (e) {
-    console.log("FAIL:", message, ":(");
+    console.log("not ok - " + message, ":(");
     console.error(e.message);
   }
 };
@@ -25,10 +26,10 @@ export const testPromise = (
 ) /*: void */ => {
   testFunction()
     .then(() => {
-      console.log("PASS:", message, ":)");
+      console.log("ok - " + message, ":)");
     })
     .catch(e => {
-      console.log("FAIL:", message, ":(");
+      console.log("not ok - " + message, ":(");
       console.error(e.message);
     });
 };

@@ -14,6 +14,10 @@ declare module "serve-static" {
   declare module.exports: any;
 }
 
+declare module "glob" {
+  declare module.exports: any;
+}
+
 declare module "../web_modules/should/as-function.js" {
   declare module.exports: any;
 }

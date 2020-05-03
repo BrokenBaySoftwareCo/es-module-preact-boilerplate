@@ -18,8 +18,10 @@
   },
   "devDependencies": {
     "browser-sync": "^2.26.7",
+    "faucet": "0.0.1",
     "fixpack": "^3.0.6",
     "flow-bin": "^0.123.0",
+    "glob": "^7.1.6",
     "nodemon": "^2.0.2",
     "prettier": "1.19.1",
     "should": "^13.2.3",
@@ -45,7 +47,7 @@
     "flow": "flow check",
     "snowpack": "snowpack install --clean",
     "start": "node server/index.js",
-    "test": "find . -name *.testy.js | xargs -n1 node"
+    "test": "node --no-warnings server/testyrunner.js | faucet"
   },
   "snowpack": {
     "webDependencies": [
