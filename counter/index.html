@@ -1,47 +1,51 @@
 <!doctype html>
 <html class="no-js" lang="">
+
 <head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="manifest" href="site.webmanifest">
+	<link rel="apple-touch-icon" href="icon.png">
+	<!-- Place favicon.ico in the root directory -->
+
+	<link rel="stylesheet" href="/css/normalize.css">
+	<link rel="stylesheet" href="/css/main.css">
+
+	<meta name="theme-color" content="#fafafa">
+	<script>
+		var USE_HASH_HISTORY = false;
+	</script>
+</head>
+
+<body>
+	<!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+	<!-- Add your site or application content here -->
+	<div id="main-container">
+		[App]
+[Counter]
+<h1 class="someCssClass_myuniqueid">Look Ma! No script tags, no build step</h1>
+<div>
+	<h1>1</h1>
+	<button>Decrement</button>
+	<button>Increment</button>
+</div>
+	</div>
+	<script src="/js/vendor/modernizr-3.8.0.min.js"></script>
+	<script src="/js/plugins.js"></script>
+	<script src="/js/main.js" type="module"></script>
+
 	<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
 	<script>
 		window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
 		ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
 	</script>
 	<script src="https://www.google-analytics.com/analytics.js" async></script>
-	<!--
-		 * Hash URLs
-		 * =========
-		 * If this is a purely client-side hosting environment, like
-		 * S3 or GitHub pages, we'll need to use http://hash.urls#/like/this
-		 * In that case, we need to catch requests for subdirectory paths
-		 * and redirect them to http://our.domain:port_number/#pathname.
-		 * This index.html file does that with the script below. It also
-		 * may as well register a page load with Google Analytics for
-		 * the original URL
-	-->
-	<script type="text/javascript">
-		(function(l) {
-			if (l.pathname) {
-				let pathName = l.pathname;
-				// `preact-router` in `/js/App.js` doesn't like trailing "/"
-				if (pathName.slice(-1) === '/') {
-					pathName = pathName.substring(0,pathName.length-1);
-				}
-				// Redirect to / with a #path/name/
-				let locationString =
-					window.location.protocol +
-					"//" + window.location.hostname;
-				if( window.location.port) {
-					locationString += ":" + window.location.port
-				}
-				locationString += "/#" + pathName
-				console.log(l.pathname, "Redirecting: ", locationString)
-				window.location.replace(locationString);
-			}
-		}(window.location))
-	</script>
-	<!-- End Single Page Apps for GitHub Pages -->
-</head>
-
-<body>
 </body>
+
 </html>
