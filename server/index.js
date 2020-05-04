@@ -8,7 +8,7 @@ import htm from "../web_modules/htm.js";
 import render from "../web_modules/preact-render-to-string.js";
 import App from "../js/App.js";
 import { readFromCache, writeToCache } from "./cache.js";
-import cachedUrls from "./cache_config.js";
+import { cacheTtl, cachedUrls } from "./cache_config.js";
 
 const html /*: HtmType */ = htm.bind(h);
 
@@ -28,7 +28,6 @@ import typeof HttpType from "http";
 
 // CONFIG
 const PORT /*: number */ = 4000;
-const cacheTtl /*: number */ = 10; // Seconds
 
 var serveAsStatic = serveStatic(".", {
   index: false,
