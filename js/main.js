@@ -21,5 +21,5 @@ hydrate(
   html`
     <${App} />
   `,
-  document.getElementById("main-container"),
+  document.getElementById("goodthing"),
 );

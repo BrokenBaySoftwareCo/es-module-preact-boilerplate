@@ -80,7 +80,7 @@ const renderToString = (url /*: string */) /*: string */ => {
   // [1] Swap the placeholder copy with the rendered output
   let renderedContent = index.replace(
     /<\!-- GOODTHING -->/g,
-    "<!-- GOODTHING -->\n" + render(App({ url }), {}, { pretty: true }),
+    render(App({ url }), {}, { pretty: true }),
   );
   return renderedContent;
   // // [2] Turn off the hash-based history in `preact-router`
