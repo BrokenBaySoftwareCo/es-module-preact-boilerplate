@@ -8,12 +8,13 @@ import htm from "../web_modules/htm.js";
 import render from "../web_modules/preact-render-to-string.js";
 import App from "../js/App.js";
 import { readFromCache, writeToCache } from "./cache.js";
-import { cacheTtl, cachedUrls } from "./cache_config.js";
+import { cacheTtl, appPaths, unCachedUrls } from "./cache_config.js";
 
 const html /*: HtmType */ = htm.bind(h);
 
 // Flow
 /*::
+import typeof { cacheTtl as CacheTtlType, appPaths as AppPathsType, unCachedUrls as UnCachedUrlsType } from "./cache_config.js";
 import typeof {readFromCache as ReadFromCacheType, writeToCache as WriteToCacheType} from "./cache.js";
 import typeof AppType from "../js/App.js";
 import typeof YabrType from "../web_modules/yabr.js";
@@ -52,7 +53,7 @@ const requestHandler = (req, res) => {
     serveAsStatic(req, res, finalHandler(req, res));
   } else if (
     (cacheTtl > 0 || forceCache === true) &&
-    cachedUrls.indexOf(urlPath) !== -1
+    appPaths().indexOf(urlPath) !== -1
   ) {
     const output = readFromCache(urlPath, cacheTtl, forceCache);
     if (output !== false) {

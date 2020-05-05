@@ -1,12 +1,12 @@
 // @flow
-import cachedUrls from "./cache_config.js";
+import { appPaths } from "./cache_config.js";
 import requestPromise from "./request_promise.js";
 /*::
-import typeof { cachedUrls as CachedUrlsType } from "./cache_config.js";
+import typeof { appPaths as AppPathsType } from "./cache_config.js";
 import RequestPromiseType from "./request_promise.js";
 */
 
-cachedUrls.forEach((url /*: string */) /*: Promise<any> */ =>
+appPaths().forEach((url /*: string */) /*: Promise<any> */ =>
   requestPromise({
     hostname: "localhost",
     port: 4000,

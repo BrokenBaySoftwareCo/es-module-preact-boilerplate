@@ -263,3 +263,9 @@ textarea {
   }
 }
 
+/*
+    * Custom
+    */
+#main-container {
+  height: 100%;
+}

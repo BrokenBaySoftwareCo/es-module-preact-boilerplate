@@ -8,5 +8,5 @@ import RequestPromiseType from "./request_promise.js";
 */
 
 cachedUrls.forEach((url /*: string */) /*: void */ => {
-  fs.unlink(`.${url}/index.html`);
+  fs.unlink(`.${url}/index.html`, () /*: void */ => {});
 });

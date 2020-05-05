@@ -20,101 +20,19 @@ testPromise("Testing server route /", () => {
   return requestPromise(options)
     .then(({ res, body }) => {
       should(res.statusCode).be.exactly(200);
-      should(body).match(/\[App\]/);
+      should(body).match(/<h1>0<\/h1>/);
     })
     .catch(e => {
       throw e;
     });
 });
 
-testPromise("Testing server route /counter", () => {
-  options.path = "/counter";
+testPromise("Testing server route /about_us", () => {
+  options.path = "/this/is/a/test/of/the/generate/script";
   return requestPromise(options)
     .then(({ res, body }) => {
       should(res.statusCode).be.exactly(200);
-      should(body).match(/\[Counter\]/);
-      should(body).match(/<h1>1<\/h1>/);
-    })
-    .catch(e => {
-      throw e;
-    });
-});
-
-testPromise("Testing server route /counter/", () => {
-  options.path = "/counter/";
-  return requestPromise(options)
-    .then(({ res, body }) => {
-      should(res.statusCode).be.exactly(200);
-      should(body).match(/\[Counter\]/);
-      should(body).match(/<h1>1<\/h1>/);
-    })
-    .catch(e => {
-      throw e;
-    });
-});
-
-options.port = 3000;
-
-testPromise("Testing client-side route /", () => {
-  options.path = "/";
-  return requestPromise(options)
-    .then(({ res, body }) => {
-      should(res.statusCode).be.exactly(200);
-    })
-    .catch(e => {
-      throw e;
-    });
-});
-
-testPromise("Testing client-side route /counter", () => {
-  options.path = "/counter";
-  return requestPromise(options)
-    .then(({ res, body }) => {
-      should(res.statusCode).be.exactly(301);
-    })
-    .catch(e => {
-      throw e;
-    });
-});
-
-testPromise("Testing client-side route /counter/", () => {
-  options.path = "/counter/";
-  return requestPromise(options)
-    .then(({ res, body }) => {
-      should(res.statusCode).be.exactly(200);
-    })
-    .catch(e => {
-      throw e;
-    });
-});
-
-testPromise("Testing client-side route /#/", () => {
-  options.path = "/#/";
-  return requestPromise(options)
-    .then(({ res, body }) => {
-      should(res.statusCode).be.exactly(200);
-    })
-    .catch(e => {
-      throw e;
-    });
-});
-
-testPromise("Testing client-side route /#/counter", () => {
-  options.path = "/#/counter";
-  return requestPromise(options)
-    .then(({ res, body }) => {
-      should(res.statusCode).be.exactly(200);
-    })
-    .catch(e => {
-      throw e;
-    });
-});
-
-testPromise("Testing client-side route /#/counter/", () => {
-  options.path = "/#/counter/";
-  return requestPromise(options)
-    .then(({ res, body }) => {
-      should(res.statusCode).be.exactly(200);
+      should(body).match(/<h1>6<\/h1>/);
     })
     .catch(e => {
       throw e;

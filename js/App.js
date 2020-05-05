@@ -42,18 +42,21 @@ const App /*: function */ = (props /*: Props */) /*: HtmType */ => {
    * Hash History URLs - pure client-side
    * =================
    * If this is a purely client-side hosting environment, like
-   * S3 or GitHub pages, we'll need to use http://hash.urls#/like/this
+   * S3 or GitHub pages, AND we don't want to generate a static site:
+   *
+   *  $npm run generate
+   *
+   * Then we'll need to use http://hash.urls#/like/this:
    */
-  if (typeof window !== "undefined" && window.USE_HASH_HISTORY === true) {
-    console.log("USE_HASH_HISTORY");
-    history = createHashHistory();
-  }
+  // if (typeof window !== "undefined" && window.USE_HASH_HISTORY === true) {
+  //   console.log("USE_HASH_HISTORY");
+  //   history = createHashHistory();
+  // }
 
   return html`
-    [App]
     <${Router} url="${props.url}" history=${history}>
       <${Counter} count="0" path="/" />
-      <${Counter} count="1" path="/counter" />
+      <${Counter} count="6" path="/this/is/a/test/of/the/generate/script" />
     </${Router}>
   `;
 };

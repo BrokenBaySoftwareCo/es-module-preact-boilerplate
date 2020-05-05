@@ -40,8 +40,7 @@
     "url": "https://github.com/k7n4n5t3w4rt/es-module-preact-boilerplate.git"
   },
   "scripts": {
-    "browsersync": "browser-sync start --server --files \"./\"",
-    "browsersync-spa": "browser-sync start --server --single --files \"./\"",
+    "browsersync": "browser-sync start --server --single --files \"./\"",
     "build": "cp -r *.html *.txt *.png *.xml css img js site.webmanifest dist/",
     "fixpack": "fixpack",
     "flow": "flow check",
