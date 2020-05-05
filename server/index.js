@@ -38,23 +38,35 @@ const requestHandler = (req, res) => {
   // NOTE: The trailing "/" doesn't seem to matter
   // to `preact-router` when `/js/App.js` is being
   // rendered server-side
-  if (req.url.match(/.+\..+$/) !== null) {
-    // console.log("Static: ", req.url);
+  const [urlPath /*: string */, queryString /*: string */] = req.url.split("?");
+  let generateValue /*: string */ = "";
+  if (typeof queryString !== "undefined") {
+    [, generateValue] = queryString.split("=");
+  }
+  let forceCache /*: boolean */ = false;
+  if (generateValue === "true") {
+    forceCache = true;
+  }
+  if (urlPath.match(/.+\..+$/) !== null) {
+    // console.log("Static: ", urlPath);
     serveAsStatic(req, res, finalHandler(req, res));
-  } else if (cacheTtl > 0 && cachedUrls.indexOf(req.url) !== -1) {
-    const output = readFromCache(req.url, cacheTtl);
+  } else if (
+    (cacheTtl > 0 || forceCache === true) &&
+    cachedUrls.indexOf(urlPath) !== -1
+  ) {
+    const output = readFromCache(urlPath, cacheTtl, forceCache);
     if (output !== false) {
-      console.log("Cache: ", req.url);
+      console.log("Cache: ", urlPath);
       res.end(output);
     } else {
-      const output = renderToString(req.url);
-      writeToCache(req.url, output);
-      console.log("Rendered: ", req.url);
+      const output = renderToString(urlPath);
+      writeToCache(urlPath, output);
+      console.log("Rendered: ", urlPath);
       res.end(output);
     }
   } else {
-    const output = renderToString(req.url);
-    console.log("Rendered: ", req.url);
+    const output = renderToString(urlPath);
+    console.log("Rendered: ", urlPath);
     res.end(output);
   }
 };

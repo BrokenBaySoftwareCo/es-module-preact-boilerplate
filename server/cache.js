@@ -7,6 +7,7 @@ import path from "path";
 export const readFromCache = (
   url /*: string */,
   cacheTtl /*: number */,
+  forceCache /*: boolean */,
 ) /*: string | false */ => {
   const cachedFilePath = `.${url}/index.html`;
   const fileExists = fs.existsSync(cachedFilePath);
@@ -14,7 +15,7 @@ export const readFromCache = (
     const stats = fs.statSync(cachedFilePath);
     const then = Math.floor(stats.mtimeMs / 1000); // seconds
     const now = Math.floor(Date.now() / 1000); // Seconds
-    if (now - then < cacheTtl) {
+    if (now - then < cacheTtl || forceCache === true) {
       return fs.readFileSync(cachedFilePath, "utf8");
     } else {
       return false;

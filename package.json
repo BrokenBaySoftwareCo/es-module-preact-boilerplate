@@ -45,9 +45,11 @@
     "build": "cp -r *.html *.txt *.png *.xml css img js site.webmanifest dist/",
     "fixpack": "fixpack",
     "flow": "flow check",
+    "generate": "node --no-warnings server/generate.js",
     "snowpack": "snowpack install --clean",
     "start": "node server/index.js",
-    "test": "node --no-warnings server/testyrunner.js | faucet"
+    "test": "node --no-warnings server/testyrunner.js | faucet",
+    "unlink": "node --no-warnings server/unlink.js"
   },
   "snowpack": {
     "webDependencies": [

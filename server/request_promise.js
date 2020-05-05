@@ -1,10 +1,7 @@
-// @flow
-import { test, testPromise, should } from "./testy.js";
 import http from "http";
-import cachedUrls from "./cache_config.js";
 
 // A handy http.request that returns a promise
-const requestPromise = (
+export const requestPromise = (
   options /*: http$requestOptions */,
 ) /*: Promise<any> */ => {
   return new Promise((resolve, reject) => {
@@ -16,7 +13,6 @@ const requestPromise = (
         })
         .on("end", () => {
           const body /*: string */ = Buffer.concat(chunks).toString(); // at this point, `body` has the entire response body stored in it as a string
-          console.log(`Done: [`, options.path, `]`);
           resolve({ res, body });
         });
 
@@ -28,10 +24,4 @@ const requestPromise = (
   });
 };
 
-cachedUrls.forEach((url /*: string */) /*: Promise<any> */ =>
-  requestPromise({
-    hostname: "localhost",
-    port: 4000,
-    method: "GET",
-    path: url,
-  }));
+export default requestPromise;
