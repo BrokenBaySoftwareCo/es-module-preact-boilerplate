@@ -79,15 +79,16 @@ const renderToString = (url /*: string */) /*: string */ => {
   );
   // [1] Swap the placeholder copy with the rendered output
   let renderedContent = index.replace(
-    /<\!-- TRUTH...BEAUTY...LOVE -->/g,
-    render(App({ url }), {}, { pretty: true }),
+    /<\!-- GOODTHING -->/g,
+    "<!-- GOODTHING -->\n" + render(App({ url }), {}, { pretty: true }),
   );
-  // [2] Turn off the hash-based history in `preact-router`
-  // because we're rendering server-side
-  return renderedContent.replace(
-    /USE_HASH_HISTORY \= true/g,
-    "USE_HASH_HISTORY = false",
-  );
+  return renderedContent;
+  // // [2] Turn off the hash-based history in `preact-router`
+  // // because we're rendering server-side
+  // return renderedContent.replace(
+  //   /USE_HASH_HISTORY \= true/g,
+  //   "USE_HASH_HISTORY = false",
+  // );
 };
 
 const server = http.createServer(requestHandler);
