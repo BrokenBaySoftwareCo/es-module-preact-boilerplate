@@ -52,10 +52,11 @@ const requestHandler = (req, res) => {
     // console.log("Static: ", urlPath);
     serveAsStatic(req, res, finalHandler(req, res));
   } else if (
-    (cacheTtl > 0 || forceCache === true) &&
+    cacheTtl > 0 &&
+    forceCache === false &&
     appPaths().indexOf(urlPath) !== -1
   ) {
-    const output = readFromCache(urlPath, cacheTtl, forceCache);
+    const output = readFromCache(urlPath, cacheTtl);
     if (output !== false) {
       console.log("Cache: ", urlPath);
       res.end(output);
@@ -67,6 +68,10 @@ const requestHandler = (req, res) => {
     }
   } else {
     const output = renderToString(urlPath);
+    if (forceCache === true) {
+      writeToCache(urlPath, output);
+      console.log("Cached: ", urlPath);
+    }
     console.log("Rendered: ", urlPath);
     res.end(output);
   }

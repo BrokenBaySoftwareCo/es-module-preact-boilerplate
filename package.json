@@ -45,6 +45,7 @@
     "fixpack": "fixpack",
     "flow": "flow check",
     "generate": "node --no-warnings server/generate.js",
+    "clear-cache": "node --no-warnings server/clear_cache.js",
     "snowpack": "snowpack install --clean",
     "start": "node server/index.js",
     "test": "node --no-warnings server/testyrunner.js | faucet",

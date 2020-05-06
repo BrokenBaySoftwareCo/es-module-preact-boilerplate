@@ -2,20 +2,21 @@
 import fs from "fs";
 import path from "path";
 /*::
+import typeof FsType from "fs";
  */
 
 export const readFromCache = (
   url /*: string */,
   cacheTtl /*: number */,
-  forceCache /*: boolean */,
+  force /*: boolean */ = false,
 ) /*: string | false */ => {
-  const cachedFilePath = `.${url}/index.html`;
+  const cachedFilePath = `.${url}/index.html`.replace("//", "/");
   const fileExists = fs.existsSync(cachedFilePath);
   if (fileExists) {
     const stats = fs.statSync(cachedFilePath);
     const then = Math.floor(stats.mtimeMs / 1000); // seconds
     const now = Math.floor(Date.now() / 1000); // Seconds
-    if (now - then < cacheTtl || forceCache === true) {
+    if (now - then < cacheTtl || force === true) {
       return fs.readFileSync(cachedFilePath, "utf8");
     } else {
       return false;
@@ -28,18 +29,54 @@ export const readFromCache = (
 export const writeToCache = (
   url /*: string */,
   renderedOutput /*: string */,
-) /*:  void */ => {
-  const filePath /*: string */ = `.${url}/index.html`;
+) /*:  Promise<boolean> */ => {
+  const filePath /*: string */ = `.${url}/index.html`.replace("//", "/");
   if (!fs.existsSync(path.dirname(filePath))) {
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
   }
-  openFile(filePath)
-    .then((fd /*: number */) /*: void */ => {
-      writeFile(fd, renderedOutput);
+  return openFile(filePath)
+    .then((fd /*: number */) /*: boolean */ => {
+      if (writeFile(fd, renderedOutput)) {
+        return true;
+      } else {
+        return false;
+      }
     })
-    .catch((e /*: Error */) /*: void */ => {
+    .catch((e /*: Error */) /*: boolean */ => {
       console.error(e);
+      return false;
     });
+};
+
+export const restoreIndexFile = () /*:  Promise<boolean> */ => {
+  const indexFilePath /*: string */ = "./index.html";
+  if (fs.existsSync(indexFilePath)) {
+    const cachedFileContents = readFromCache("/", 0, true) || "";
+    let restoredIndexFileContents = cachedFileContents;
+    if (cachedFileContents !== "") {
+      restoredIndexFileContents =
+        cachedFileContents.replace(
+          /data-goodthing[\s\S]*data-goodthing/g,
+          "data-goodthing><!-- GOODTHING --></div data-goodthing",
+        ) || "";
+      if (restoredIndexFileContents !== "") {
+        return openFile(indexFilePath)
+          .then((fd /*: number */) /*: boolean */ => {
+            if (writeFile(fd, restoredIndexFileContents)) {
+              return true;
+            } else {
+              return false;
+            }
+          })
+          .catch((e /*: Error */) /*: boolean */ => {
+            console.error(e);
+            return false;
+          });
+      }
+    }
+  }
+  // If something has gone wrong, reject
+  return Promise.reject(false);
 };
 
 export const openFile = (filePath /*: string */) /*: Promise<number> */ => {
@@ -60,8 +97,8 @@ export const openFile = (filePath /*: string */) /*: Promise<number> */ => {
 export const writeFile = (
   fd /*: number */,
   renderedOutput /*: string */,
-) /*: void */ => {
-  new Promise((resolve, reject) /*: void */ => {
+) /*: Promise<boolean> */ => {
+  return new Promise((resolve, reject) /*: void */ => {
     fs.write(fd, renderedOutput, 0, "utf8", (
       e /*: ?ErrnoError */,
       written /*: number */,
@@ -73,7 +110,41 @@ export const writeFile = (
         resolve(true);
       }
     });
-  }).catch((e /*: Error */) /*: void */ => {
+  }).catch((e /*: Error */) /*: boolean */ => {
     console.error(e);
+    return false;
+  });
+};
+
+export const clearFromCache = (url /*: string */) /*: Promise<boolean> */ => {
+  const [, topLevelDirectory] = url.split("/");
+  return new Promise((resolve, reject) /*: void */ => {
+    // Flow doesn't recognise the new signature for
+    // fs.rmdir with the recursive option
+    const deleteDir = `./${topLevelDirectory}`;
+    // Don't do it. Don't recursively delete everything
+    if (deleteDir === "/" || deleteDir === "./" || deleteDir === "../") {
+      throw new Error("This is, potentially, a massive problem.");
+    } else if (deleteDir === "./") {
+      // Not so much of a problem but we have to
+      // work out what to do with ./index.html
+    } else {
+      // Ok, continue...
+      fs.rmdir(
+        deleteDir,
+        // $FlowFixMe
+        {
+          recursive: true,
+        },
+        // $FlowFixMe
+        e => {
+          if (e) {
+            reject(e);
+          } else {
+            resolve(true);
+          }
+        },
+      );
+    }
   });
 };

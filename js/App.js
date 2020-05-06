@@ -32,7 +32,7 @@ const App /*: function */ = (props /*: Props */) /*: HtmType */ => {
   return html`
     <${Router} url="${props.url}">
       <${Counter} count="0" path="/" />
-      <${Counter} count="6" path="/this/is/a/test/of/the/generate/script" />
+      <${Counter} count="6" path="/this/is/a/test/of/the/cache/script" />
     </${Router}>
   `;
 };
