@@ -18,7 +18,6 @@ testPromise("Testing server route /", () => {
   return requestPromise(options)
     .then(({ res, body }) => {
       should(res.statusCode).be.exactly(200);
-      should(body).match(/<h1>0<\/h1>/);
     })
     .catch(e => {
       throw e;
