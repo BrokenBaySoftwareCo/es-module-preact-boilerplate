@@ -22,7 +22,7 @@ cd mysite && rm -rf .git
 npm i
 ```
 
-[4] Update the ES modules with Snowpack
+[4] Update the ES modules with [Snowpack](https://www.snowpack.dev/)
 
 ```
 npm run snowpack
