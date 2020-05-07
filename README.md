@@ -51,7 +51,7 @@ NOTE: Ctrl+C will stop the NodeJS server.
 [8] Generate your static site for GitHub pages, S3, etc.
 
 ```
-npm run generate
+npm run build
 ```
 
 [9] Test it locally with Browsersync
@@ -61,6 +61,22 @@ npm run browsersync
 ```
 
 [10] `git init` etc. and push your code up to GitHub or somewhere with great, free hosting for static sites.
+
+[11] When you change your `<Routes>`, clean up your static files
+
+ ```
+ npm run unbuild
+ ```
+
+ [12] Local cache
+
+ You can keep the static files updated as you access the different routes during development. This is a bit like a cache. Just change the setting in `/server/static_config.js` to something like 10 seconds
+
+ ```
+ ...
+ export const cacheTtl /*: number */ = 10; // Seconds
+ ...
+ ```
 
 
 ## Preact w/ ES Modules

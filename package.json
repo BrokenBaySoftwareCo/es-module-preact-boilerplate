@@ -41,13 +41,13 @@
   },
   "scripts": {
     "browsersync": "browser-sync start --server --files \"./\"",
-    "clear": "node --no-warnings server/static_clear.js",
+    "build": "node --no-warnings server/static_generate.js",
     "fixpack": "fixpack",
     "flow": "flow check",
-    "generate": "node --no-warnings server/static_generate.js",
     "snowpack": "snowpack install --clean",
     "start": "node server/index.js",
-    "test": "node --no-warnings server/testyrunner.js | faucet"
+    "test": "node --no-warnings server/testyrunner.js | faucet",
+    "unbuild": "node --no-warnings server/static_clear.js"
   },
   "snowpack": {
     "webDependencies": [

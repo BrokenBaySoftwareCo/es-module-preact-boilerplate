@@ -1,7 +1,7 @@
 // @flow
 import fs from "fs";
 
-export const cacheTtl /*: number */ = 10; // Seconds
+export const cacheTtl /*: number */ = 0; // Seconds
 export const appPaths = () /*: Array<string> */ => {
   const appContents = fs.readFileSync("./js/App.js", "utf8");
   const keyValues = appContents.match(/path=".+"/g);
