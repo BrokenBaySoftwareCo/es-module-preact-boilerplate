@@ -122,10 +122,6 @@ import { useState } from '../web_modules/preact/hooks.js'
 import htm from '../web_modules/htm.js'
 ```
 
-## Build
-
-At the moment there's no build script. At some point the build script could generate minified JS. Right now there's tree-shaking going on with Snowpack so I don't know if it's worth it for the library code.
-
 ## To Do
 
 [1] Get the build script to tell Snowpack put production versions of packages into the `dist/web_manifest`
