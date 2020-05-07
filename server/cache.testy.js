@@ -96,13 +96,19 @@ testPromise(
     return writeToCache(cachedFilePath, "Testy test")
       .then(result => {
         should(result).be.exactly(true);
-        should(readFromCache(cachedFilePath, 10, true)).be.exactly(
-          "Testy test",
-        );
-        should(readFromCache(cachedFilePath, 0, true)).be.exactly("Testy test");
-        should(readFromCache(cachedFilePath, 0)).be.exactly(false);
+        return result;
         // Clean up the file
-        fs.unlink(cachedFilePath, () /*: void */ => {});
+      })
+      .then(result => {
+        should(readFromCache(cachedFilePath, 0, true)).be.exactly("Testy test");
+        fs.unlink(cachedFilePath, (
+          e /*: Error | null | typeof undefined */,
+        ) /*: void */ => {
+          if (e) {
+            // console.error(e);
+          }
+        });
+        return true;
       })
       .catch((e) /*: void */ => {
         console.error(e);

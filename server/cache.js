@@ -35,12 +35,15 @@ export const writeToCache = (
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
   }
   return openFile(filePath)
-    .then((fd /*: number */) /*: boolean */ => {
-      if (writeFile(fd, renderedOutput)) {
-        return true;
-      } else {
-        return false;
-      }
+    .then((fd /*: number */) /*: Promise<boolean> */ => {
+      return writeFile(fd, renderedOutput)
+        .then(() /*: boolean */ => {
+          return true;
+        })
+        .catch((e /*: Error */) /*: boolean */ => {
+          console.error(e);
+          return false;
+        });
     })
     .catch((e /*: Error */) /*: boolean */ => {
       console.error(e);
@@ -61,12 +64,15 @@ export const restoreIndexFile = () /*:  Promise<boolean> */ => {
         ) || "";
       if (restoredIndexFileContents !== "") {
         return openFile(indexFilePath)
-          .then((fd /*: number */) /*: boolean */ => {
-            if (writeFile(fd, restoredIndexFileContents)) {
-              return true;
-            } else {
-              return false;
-            }
+          .then((fd /*: number */) /*: Promise<boolean> */ => {
+            return writeFile(fd, restoredIndexFileContents)
+              .then(() /*: boolean */ => {
+                return true;
+              })
+              .catch((e /*: Error */) /*: boolean */ => {
+                console.error(e);
+                return false;
+              });
           })
           .catch((e /*: Error */) /*: boolean */ => {
             console.error(e);

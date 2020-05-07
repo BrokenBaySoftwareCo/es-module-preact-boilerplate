@@ -10,26 +10,32 @@ export { shouldFunction as should };
 export const test = (
   message /*: string */,
   testFunction /*: function */,
+  skip /*: "skip" | boolean */ = false,
 ) /*: void */ => {
-  try {
-    testFunction();
-    console.log("ok - " + message, ":)");
-  } catch (e) {
-    console.log("not ok - " + message, ":(");
-    console.error(e.message);
+  if (!skip !== "skip") {
+    try {
+      testFunction();
+      console.log("ok - " + message, ":)");
+    } catch (e) {
+      console.log("not ok - " + message, ":(");
+      console.error(e.message);
+    }
   }
 };
 
 export const testPromise = (
   message /*: string */,
   testFunction /*: promiseFunction */,
+  skip /*: "skip" | boolean */ = false,
 ) /*: void */ => {
-  testFunction()
-    .then(() => {
-      console.log("ok - " + message, ":)");
-    })
-    .catch(e => {
-      console.log("not ok - " + message, ":(");
-      console.error(e.message);
-    });
+  if (skip !== "skip") {
+    testFunction()
+      .then(() => {
+        console.log("ok - " + message, ":)");
+      })
+      .catch(e => {
+        console.log("not ok - " + message, ":(");
+        console.error(e.message);
+      });
+  }
 };
