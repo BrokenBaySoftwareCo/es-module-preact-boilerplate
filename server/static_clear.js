@@ -1,12 +1,12 @@
 // @flow
-import { appPaths } from "./cache_config.js";
-import { clearFromCache, restoreIndexFile } from "./cache.js";
+import { appPaths } from "./static_config.js";
+import { clearFromCache, restoreIndexFile } from "./static.js";
 /*::
-import typeof { appPaths as AppPathsType } from "./cache_config.js";
+import typeof { appPaths as AppPathsType } from "./static_config.js";
 import {
   clearFromCache as ClearFromCacheType,
   restoreIndexFile as RestoreIndexFileType
-} from "./cache.js";
+} from "./static.js";
 */
 
 appPaths().forEach((cachePath /*: string */) /*: void */ => {

@@ -7,15 +7,15 @@ import { h } from "../web_modules/preact.js";
 import htm from "../web_modules/htm.js";
 import render from "../web_modules/preact-render-to-string.js";
 import App from "../js/App.js";
-import { readFromCache, writeToCache } from "./cache.js";
-import { cacheTtl, appPaths, unCachedUrls } from "./cache_config.js";
+import { readFromCache, writeToCache } from "./static.js";
+import { cacheTtl, appPaths, unCachedUrls } from "./static_config.js";
 
 const html /*: HtmType */ = htm.bind(h);
 
 // Flow
 /*::
-import typeof { cacheTtl as CacheTtlType, appPaths as AppPathsType, unCachedUrls as UnCachedUrlsType } from "./cache_config.js";
-import typeof {readFromCache as ReadFromCacheType, writeToCache as WriteToCacheType} from "./cache.js";
+import typeof { cacheTtl as CacheTtlType, appPaths as AppPathsType, unCachedUrls as UnCachedUrlsType } from "./static_config.js";
+import typeof {readFromCache as ReadFromCacheType, writeToCache as WriteToCacheType} from "./static.js";
 import typeof AppType from "../js/App.js";
 import typeof YabrType from "../web_modules/yabr.js";
 import typeof RenderType from "../web_modules/preact-render-to-string.js";

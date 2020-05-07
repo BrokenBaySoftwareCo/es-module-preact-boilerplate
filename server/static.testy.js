@@ -7,7 +7,7 @@ import {
   readFromCache,
   clearFromCache,
   restoreIndexFile,
-} from "./cache.js";
+} from "./static.js";
 import requestPromise from "./request_promise.js";
 import fs, { read } from "fs";
 /*::
@@ -23,7 +23,7 @@ import typeof {
   readFromCache as ReadFromCacheType,
   clearFromCache as ClearFromCacheType,
   restoreIndexFile as RestoreIndexFileType
-} from "./cache.js";
+} from "./static.js";
 */
 
 testPromise("Cache | Opening a file", () /*: Promise<any>*/ => {

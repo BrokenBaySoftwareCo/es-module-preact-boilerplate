@@ -1,8 +1,8 @@
 // @flow
-import { appPaths } from "./cache_config.js";
+import { appPaths } from "./static_config.js";
 import requestPromise from "./request_promise.js";
 /*::
-import typeof { appPaths as AppPathsType } from "./cache_config.js";
+import typeof { appPaths as AppPathsType } from "./static_config.js";
 import RequestPromiseType from "./request_promise.js";
 */
 

@@ -1,6 +1,67 @@
 # es-module-preact-boilerplate
 
-This is a combination of Preact with ES6 modules and [HTML5Boilerplate](https://html5boilerplate.com/).
+No WebPack. No build. Built-in static site generation.
+
+## Getting Started
+
+[1] Clone the repo
+
+```
+git clone git@github.com:k7n4n5t3w4rt/es-module-preact-boilerplate.git > mysite
+```
+
+[2] Remove `/.git`
+
+```
+cd mysite && rm -rf .git
+```
+
+[3] Install NodeJS modules
+
+```
+npm i
+```
+
+[4] Update the ES modules with Snowpack
+
+```
+npm run snowpack
+```
+
+[5] Test
+
+```
+npm run test
+```
+
+[6] Code (or don't if you're just trying it out)
+
+```
+Your code here.
+```
+
+[7] Preview your site dynamically at <http://localhost:4000> during development
+
+```
+npm start
+```
+
+NOTE: Ctrl+C will stop the NodeJS server.
+
+[8] Generate your static site for GitHub pages, S3, etc.
+
+```
+npm run generate
+```
+
+[9] Test it locally with Browsersync
+
+```
+npm run browsersync
+```
+
+[10] `git init` etc. and push your code up to GitHub or somewhere with great, free hosting for static sites.
+
 
 ## Preact w/ ES Modules
 
@@ -47,17 +108,11 @@ import htm from '../web_modules/htm.js'
 
 ## Build
 
-At the moment the build script is just a placeholder that puts all the front end code into the `/dist` directory.
-For the moment, the files in `dist` are just copies but later I may use Babel to transpile away things like `htm` away for the dist build.
-
-```
-    "build": "cp -r *.html *.txt *.png *.xml css img js site.webmanifest dist/",
-```
-
-Actually it probably doesn't work yet because there's no `web_manifest` dir...
+At the moment there's no build script. At some point the build script could generate minified JS. Right now there's tree-shaking going on with Snowpack so I don't know if it's worth it for the library code.
 
 ## To Do
 
 [1] Get the build script to tell Snowpack put production versions of packages into the `dist/web_manifest`
-[2] Use [this Babel plugin](https://github.com/developit/htm/tree/master/packages/babel-plugin-htm) to compile the `htm` module out of existence.
+[2] Mayne use [this Babel plugin](https://github.com/developit/htm/tree/master/packages/babel-plugin-htm) to compile the `htm` module out of existence.
+[3] The "Testy" test runner needs an "only" option
 
