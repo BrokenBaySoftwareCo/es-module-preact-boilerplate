@@ -14,7 +14,7 @@ const options /*: http$requestOptions */ = {
   path: "/",
 };
 
-testPromise("Testing server route /", () => {
+testPromise("Routes | Testing /", () => {
   return requestPromise(options)
     .then(({ res, body }) => {
       should(res.statusCode).be.exactly(200);
@@ -23,3 +23,5 @@ testPromise("Testing server route /", () => {
       throw e;
     });
 });
+
+// Test other routes here

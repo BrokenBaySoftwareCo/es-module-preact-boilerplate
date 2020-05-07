@@ -7,7 +7,7 @@ No WebPack. No build. Built-in static site generation.
 [1] Clone the repo
 
 ```
-git clone git@github.com:k7n4n5t3w4rt/es-module-preact-boilerplate.git > mysite
+git clone git@github.com:k7n4n5t3w4rt/es-module-preact-boilerplate.git mysite
 ```
 
 [2] Remove `/.git`
