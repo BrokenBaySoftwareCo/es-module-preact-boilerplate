@@ -28,25 +28,25 @@ npm i
 npm run snowpack
 ```
 
-[5] Test
-
-```
-npm run test
-```
-
-[6] Code (or don't if you're just trying it out)
-
-```
-Your code here.
-```
-
-[7] Preview your site dynamically at <http://localhost:4000> during development
+[5] Preview your site dynamically at <http://localhost:4000> during development
 
 ```
 npm start
 ```
 
 NOTE: Ctrl+C will stop the NodeJS server.
+
+[6] Test
+
+```
+npm run test
+```
+
+[7] Code (or don't if you're just trying it out)
+
+```
+Your code here.
+```
 
 [8] Generate your static site for GitHub pages, S3, etc.
 
