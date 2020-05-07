@@ -113,6 +113,6 @@ At the moment there's no build script. At some point the build script could gene
 ## To Do
 
 [1] Get the build script to tell Snowpack put production versions of packages into the `dist/web_manifest`
-[2] Mayne use [this Babel plugin](https://github.com/developit/htm/tree/master/packages/babel-plugin-htm) to compile the `htm` module out of existence.
+[2] Maybe use [this Babel plugin](https://github.com/developit/htm/tree/master/packages/babel-plugin-htm) to compile the `htm` module out of existence.
 [3] The "Testy" test runner needs an "only" option
 
